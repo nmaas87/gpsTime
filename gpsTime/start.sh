@@ -33,11 +33,11 @@ fi
 # just let it all settle
 sleep 1
 
-# start GPSD with ttyAMA0/pps0
+# start GPSD with ttyAMA0/pps0 in background
 /usr/sbin/gpsd -n -N -P /run/gpsd/gpsd.pid /dev/ttyAMA0 /dev/pps0 &
 
 # just let it all settle
 sleep 1
 
-# start chronyd
-/usr/sbin/chronyd -d &
+# start chronyd in foreground
+/usr/sbin/chronyd -d 

@@ -27,6 +27,9 @@ data:
     - raspberry-pi
     - raspberry-pi2
     - raspberrypi3
+    - raspberrypi3-64
     - raspberrypi4-64
+    - raspberrypi400-64
+    - raspberrypicm4-ioboard
     - fincm3
-version: 0.9.0
+version: 0.9.1
