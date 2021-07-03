@@ -26,7 +26,6 @@ data:
     - OFFSET: "0.0"
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
-    - raspberry-pi
     - raspberry-pi2
     - raspberrypi3
     - raspberrypi3-64
