@@ -18,4 +18,4 @@ RUN chmod +x /usr/app/install.sh && chmod +x /usr/app/start.sh && /usr/app/insta
 COPY etc /
 
 # server.js will run when container starts up on the device
-CMD ["start.sh"]
+CMD ["/usr/app/start.sh"]
