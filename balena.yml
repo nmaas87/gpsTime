@@ -16,7 +16,7 @@ assets:
         https://raw.githubusercontent.com/nmaas87/gpsTime/main/hub-logo.png
 data:
   applicationConfigVariables:
-    - BALENA_HOST_CONFIG_dtoverlay: "disable-bt","pps-gpio,gpiopin=18,capture_clear"
+    - BALENA_HOST_CONFIG_dtoverlay: '"disable-bt","pps-gpio,gpiopin=18,capture_clear"'
     - BALENA_HOST_CONFIG_enable_uart: 1
   applicationEnvironmentVariables:
     - BAUD: 9600
