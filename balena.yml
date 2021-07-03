@@ -1,0 +1,32 @@
+name: gpsTime
+description: >-
+  Uses attached GPS UART with PPS to provide accurate time via chrony ntp server
+fleetcta: Add GPS Modul!
+post-provisioning: 'Read correct wiring in the repo README'
+type: sw.application
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/nmaas87/gpsTime'
+  logo:
+    type: blob.asset
+    data:
+      url: >-
+        https://raw.githubusercontent.com/nmaas87/gpsTime/main/hub-logo.png
+data:
+  applicationConfigVariables:
+    - BALENA_HOST_CONFIG_dtoverlay: "disable-bt","pps-gpio,gpiopin=18,capture_clear"
+    - BALENA_HOST_CONFIG_enable_uart: 1
+  applicationEnvironmentVariables:
+    - BAUD: 9600
+    - ALLOW: "all"
+    - OFFSET: "0.0"
+  defaultDeviceType: raspberrypi4-64
+  supportedDeviceTypes:
+    - raspberry-pi
+    - raspberry-pi2
+    - raspberrypi3
+    - raspberrypi4-64
+    - fincm3
+version: 1.0.0

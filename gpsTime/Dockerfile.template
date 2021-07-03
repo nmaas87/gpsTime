@@ -1,0 +1,21 @@
+# base-image for node on any machine using a template variable,
+# see more about dockerfile templates here: https://www.balena.io/docs/learn/develop/dockerfile/#dockerfile-templates
+# and about balena base images here: https://www.balena.io/docs/reference/base-images/base-images/
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:buster
+
+# Defines our working directory in container
+WORKDIR /usr/app
+
+# copy files
+COPY sources.list /etc/apt/sources.list
+COPY install.sh .
+COPY start.sh .
+
+# chmod install and run files and install depedencies
+RUN chmod +x /usr/app/install.sh && chmod +x /usr/app/start.sh && /usr/app/install.sh
+
+# overwrite chrony config files
+COPY etc /
+
+# server.js will run when container starts up on the device
+CMD ["start.sh"]

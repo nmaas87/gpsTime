@@ -1,0 +1,16 @@
+version: '2'
+services: 
+  gpsTime:
+    privileged: true
+    ipc: "host"
+    build: "./gpsTime"
+    devices: 
+      - "/dev/ttyAMA0:/dev/ttyAMA0"
+      - "/dev/pps0:/dev/pps0"
+    ports:
+      - "123"
+      - "123/udp"
+    environment:
+      - "DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket"
+    labels:
+      io.balena.features.dbus: '1'
