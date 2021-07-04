@@ -18,7 +18,7 @@ There are multiple environmental variables in case you need to customize the set
 
 ## Which RPi to use
 
-You can use all B+ models, except RPi 1B+/RPi Zero as these models are extremly slow with current balenaOS releases and the image does not work with them. Consequently, you can use the RPi 2B, 3B, 3B+, 4B, 400, CM4 and balenaFin. It does not matter if you use the 32 or 64 bit versions as belana handles this nicely. This setup has been tested with RPi 2B and RPi 4B in 64 bit mode.
+You can use all B+ models, except RPi 1B+/RPi Zero as these models are extremely slow with current balenaOS releases and the image does not work with them. Consequently, you can use the RPi 2B, 3B, 3B+, 4B, 400, CM4 and balenaFin. It does not matter if you use the 32 or 64 bit versions as balena handles this nicely. This setup has been tested with RPi 2B and RPi 4B in 64 bit mode.
 
 ## Which GPS module to use
 
@@ -92,6 +92,30 @@ to provide you a look about all incoming GPS data
 * ````chronyc makestep````
 
 To make chrony "tick" the local clock on the RPi to the next time in a hard sweep, not via soft modification over time.
+
+* Comparing time
+
+You can e.g. synchronize your home network devices with your gpsTime balena device and then compare their time quality with other NTP servers. On Windows 10, this works easily with
+````w32tm /stripchart /computer:<IPorDNS> /dataonly /samples:5````
+
+In this example I compared my locale gpsTime NTP server with the ptbtime3 (an official german timeserver). I synchronized the clock local RTC of my laptop to gpsTime and then used following commands. The first one will show how much the RPi and the local RTC will differ, the second one how much the PTB timeserver and the local RTC do. As you can see, my local RTC is slight in the past (both times are a fraction of a second in the future, indicated by the +) - however, we are well in the sub-second area:
+
+````
+w32tm /stripchart /computer:<IPofRPi> /dataonly /samples:5
+It is 04.07.2021 18:03:43.
+18:03:43, +00.0085224s
+18:03:45, +00.0079209s
+
+w32tm /stripchart /computer:ptbtime3.ptb.de /dataonly /samples:5
+It is 04.07.2021 18:03:46.
+18:03:46, +00.0119076s
+18:03:48, +00.0123034s
+````
+
+Also try to use timeservers as close as possible to you and via Ethernet, not Wifi or other wireless communication standards. All these factors will influence the quality of the timesignal. This is also the reason why to build a local timeserver on GPS base: Being independent from network access and with a bit more accuracy. Also its fun ;).
+
+
+
 
 ## Optimization
 
