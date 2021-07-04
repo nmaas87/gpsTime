@@ -7,6 +7,7 @@ services:
     devices: 
       - "/dev/ttyAMA0:/dev/ttyAMA0"
       - "/dev/pps0:/dev/pps0"
+      - "/dev/rtc:/dev/rtc"
     ports:
       - "123"
       - "123/udp"

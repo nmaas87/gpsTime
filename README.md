@@ -104,6 +104,11 @@ To make chrony "tick" the local clock on the RPi to the next time in a hard swee
 * port the overall setup from Debian to Alpine
 * write an calibration demon which would run the overall setup for the first <24 hours in calibration mode, calculate the offset for this GPS setup, set the offset variable and then start in the "full GPS" mode
 
+## Changelog
+
+* 1.0.0 (2021-07-03): First release
+* 1.0.1 (2021-07-04): Disable balenaOS chronyd on start (gpsTime is going to synchronize the RTC)
+
 ## Thanks
 
 A lot of this is taken from the excellent work of beta-tester's Repo, but also other websites. To give an overview to all these awesome people:

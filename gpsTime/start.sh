@@ -30,6 +30,16 @@ if [[ ! -z $OFFSET ]]
     sed -i "s/offset.*$/offset 0.0/g" /etc/chrony/stratum1/10-refclocks-pps0.conf
 fi
 
+# kill chronyd running on balenaOS, we only want time from GPS
+DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket \
+  dbus-send \
+  --system \
+  --print-reply \
+  --dest=org.freedesktop.systemd1 \
+  /org/freedesktop/systemd1 \
+  org.freedesktop.systemd1.Manager.StopUnit \
+  string:chronyd.service string:replace
+
 # just let it all settle
 sleep 1
 

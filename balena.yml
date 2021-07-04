@@ -33,4 +33,4 @@ data:
     - raspberrypi400-64
     - raspberrypicm4-ioboard
     - fincm3
-version: 1.0.0
+version: 1.0.1
