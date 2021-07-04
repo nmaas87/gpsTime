@@ -1,6 +1,6 @@
 # gpsTime
 
-balena enabled GPS NTP timeserver
+balena enabled GPS NTP timeserver with gpsd and chronyd.
 
 ## Setup
 
@@ -15,6 +15,10 @@ There are multiple environmental variables in case you need to customize the set
 * BAUD: sets the baudrate of your GPS module. Default is 9600, however, if you need e.g. 115200, just set BAUD=115200.
 * ALLOW: sets the allow variable within the [NTP server of chrony](https://chrony.tuxfamily.org/doc/3.4/chrony.conf.html). Example: "192.168.178.0/24" as ALLOW will allow only hosts from the network of 192.168.178.0/24 to use the NTP server. If you set ALLOW to "" or "all", it will allow all hosts from anywhere.
 * OFFSET: sets the [OFFSET value for GPS within chrony](https://chrony.tuxfamily.org/doc/3.4/chrony.conf.html). Default is 0.0 - and an empty ("") or default value ("0.0") will mean that no offset will be applied.
+
+## Which RPi to use
+
+You can use all B+ models, except RPi 1B+/RPi Zero as these models are extremly slow with current balenaOS releases and the image does not work with them. Consequently, you can use the RPi 2B, 3B, 3B+, 4B, 400, CM4 and balenaFin. It does not matter if you use the 32 or 64 bit versions as belana handles this nicely. This setup has been tested with RPi 2B and RPi 4B in 64 bit mode.
 
 ## Which GPS module to use
 
@@ -94,6 +98,11 @@ To make chrony "tick" the local clock on the RPi to the next time in a hard swee
 * Disable all GPS messages on your GPS receiver except $GPRMC or $GPZDA - both of these contain time & date. With this, less data is needed to transfer and gpsd can work better.
 * Increase data transfer on your GPS receiver from 9600 to 115200 BAUD. Then you also need to configure the BAUD in balenaCloud (see above under Variables).
 
+## Potential improvements (PRs welcome :))
+
+* clean up and improve documentation
+* port the overall setup from Debian to Alpine
+* write an calibration demon which would run the overall setup for the first <24 hours in calibration mode, calculate the offset for this GPS setup, set the offset variable and then start in the "full GPS" mode
 
 ## Thanks
 
