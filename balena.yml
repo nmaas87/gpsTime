@@ -2,7 +2,7 @@ name: gpsTime
 description: >-
   Uses attached GPS UART with PPS to provide accurate time via chrony ntp server
 fleetcta: Add GPS Modul!
-joinable: false
+joinable: true
 post-provisioning: >-
   Read correct wiring in the repo README - https://github.com/nmaas87/gpsTime
 type: sw.application
@@ -26,11 +26,11 @@ data:
     - OFFSET: "0.0"
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
+    - fincm3
+    - raspberrypi4-64
     - raspberry-pi2
     - raspberrypi3
     - raspberrypi3-64
-    - raspberrypi4-64
     - raspberrypi400-64
     - raspberrypicm4-ioboard
-    - fincm3
 version: 1.0.32
